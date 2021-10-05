@@ -1,0 +1,69 @@
+<button type="button" class="btn btn-primary float-right m-2" 
+data-toggle="modal" data-target="#exampleModal"
+(click)="onClick()"
+data-backdrop="static" data-keyboard="false"
+>
+    Add Offer
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"
+          >{{ModalTitle}}</h5>
+          <button type="button" class="close" 
+          data-dismiss="modal" aria-label="Close"
+          (click)="closeClick()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <app-add-offer [off]="off" *ngIf="ActivateAddOfferComponent">
+            </app-add-offer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Offer Id</th>
+        <th scope="col">Offer Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">Price</th>
+        <th scope="col">Created</th>
+        <th scope="col">Description</th>
+        <th scope="col">Methods</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor ="let item of OfferList">
+            <td>{{item.OfferId}}</td>
+            <td>{{item.OfferName}}</td>
+            <td>{{item.OfferCategory}}</td>
+            <td>{{item.price}}</td>
+            <td>{{item.created_at}}</td>
+            <td>{{item.description}}</td>
+        
+            <td> 
+            <button type="button" class="btn btn-warning"
+            data-toggle="modal" data-target="#exampleModal"
+            (click)="editOfferClick(item)"
+            data-backdrop="static" data-keyboard="false"
+            >Edit
+            </button>  &nbsp;
+
+            <button type="button" class="btn btn-danger"
+            (click)="deleteOfferClick(item)"
+            data-backdrop="static" data-keyboard="false"
+            
+            >Delete
+            </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
